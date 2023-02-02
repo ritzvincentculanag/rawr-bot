@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 
 # Import cogs
 from features.general import Rawr
+from features.interaction import Interaction
 
 # Bot intents
 bot_intents = Intents.default()
@@ -17,7 +18,8 @@ bot = Bot(command_prefix=".", intents=bot_intents)
 
 # Declare cots
 bot_cogs = [
-    Rawr
+    Rawr,
+    Interaction
 ]
 
 

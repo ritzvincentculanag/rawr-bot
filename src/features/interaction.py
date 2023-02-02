@@ -28,3 +28,20 @@ class Interaction(Cog):
                     f"{interaction.user.mention}" \
                     f" said good morning ☀.",
         )
+
+    @command(name="gnight", description="Greet someone good night!")
+    async def gmorning(self, interaction: Interaction, member: Member):
+        if member is None:
+            await interaction.response.send_message(
+                content="No member provided",
+                delete_after=5,
+                ephemeral=True
+            )
+
+            return
+
+        await interaction.response.send_message(
+            content=f"Hey {member.mention}! " \
+                    f"{interaction.user.mention}" \
+                    f" said good night 🌙.",
+        )

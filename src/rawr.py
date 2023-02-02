@@ -5,6 +5,9 @@ from discord import Intents
 
 from dotenv import load_dotenv
 
+# Import cogs
+from features.general import Rawr
+
 # Bot intents
 bot_intents = Intents.default()
 bot_intents.message_content = True
@@ -14,7 +17,7 @@ bot = Bot(command_prefix=".", intents=bot_intents)
 
 # Declare cots
 bot_cogs = [
-
+    Rawr
 ]
 
 
@@ -22,7 +25,7 @@ bot_cogs = [
 async def on_ready():
     # Add all cogs to bot
     for cog in bot_cogs:
-        bot.add_cog(cog(bot))
+        await bot.add_cog(cog(bot))
 
     # Refresh all commands in tree
     await bot.wait_until_ready()

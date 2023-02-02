@@ -24,7 +24,7 @@ class Interaction(Cog):
             return
 
         await interaction.response.send_message(
-            content=f"Hey {member.mention}, " \
-                    f"{interaction.message.author.mention}" \
-                    f"said good morning ☀.",
+            content=f"Hey {member.mention}! " \
+                    f"{interaction.user.mention}" \
+                    f" said good morning ☀.",
         )

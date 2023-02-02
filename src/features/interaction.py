@@ -30,7 +30,7 @@ class Interaction(Cog):
         )
 
     @command(name="gnight", description="Greet someone good night!")
-    async def gmorning(self, interaction: Interaction, member: Member):
+    async def gnight(self, interaction: Interaction, member: Member):
         if member is None:
             await interaction.response.send_message(
                 content="No member provided",

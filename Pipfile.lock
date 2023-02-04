@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "308c4c6594d7f5150ea3b210d76b8652d2224af4d7584e5514031b21fddd6929"
+            "sha256": "4b3cc88e1623a65bc321ec08b59b4d273de1d02d1638258a29e7b3f9d24d9500"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -149,6 +149,14 @@
             ],
             "markers": "python_full_version >= '3.6.0'",
             "version": "==2.1.1"
+        },
+        "colorama": {
+            "hashes": [
+                "sha256:08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44",
+                "sha256:4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6"
+            ],
+            "markers": "platform_system == 'Windows'",
+            "version": "==0.4.6"
         },
         "discord.py": {
             "hashes": [
@@ -326,6 +334,13 @@
             "markers": "python_version >= '3.7'",
             "version": "==6.0.4"
         },
+        "openai": {
+            "hashes": [
+                "sha256:168813319a1422cb71a5005f9e404065483556cea52c9ccbfb838cda134087a7"
+            ],
+            "index": "pypi",
+            "version": "==0.26.4"
+        },
         "ploudosapi": {
             "hashes": [
                 "sha256:0cdf12396d343e633f0caf485873cd8164967df179a394ac105103ed1ef4c19e",
@@ -349,6 +364,14 @@
             ],
             "markers": "python_version >= '3.7' and python_version < '4'",
             "version": "==2.28.2"
+        },
+        "tqdm": {
+            "hashes": [
+                "sha256:5f4f682a004951c1b450bc753c710e9280c5746ce6ffedee253ddbcbf54cf1e4",
+                "sha256:6fee160d6ffcd1b1c68c65f14c829c22832bc401726335ce92c52d395944a6a1"
+            ],
+            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'",
+            "version": "==4.64.1"
         },
         "urllib3": {
             "hashes": [

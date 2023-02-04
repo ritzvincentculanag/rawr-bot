@@ -35,7 +35,7 @@ class Aternos(Cog):
                 Address: `{server.address}`
                 Status: `{server.status}`
                 Players: `{server.players_count}`
-                Index: `{index}
+                Index: `{index}`
                 """.strip()
             )
 

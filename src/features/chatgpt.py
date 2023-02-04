@@ -31,7 +31,6 @@ class Chatgpt(Cog):
             temperature=0.8,
             max_tokens=1000
         )
-        print(question_data)
         question_answer = question_data["choices"][0]["text"]
 
         embed_answer = Embed(
@@ -41,4 +40,4 @@ class Chatgpt(Cog):
         )
         embed_answer.set_footer(text=ANSWER_AUTHOR)
 
-        await ctx.send(embed=embed_answer)
+        await ctx.reply(embed=embed_answer)

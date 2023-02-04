@@ -47,6 +47,14 @@ class Aternos(Cog):
             return
 
         server_to_start = self.servers[index]
+        if server_to_start.status == "online":
+            await ctx.send(
+                content="Server is already online",
+                delete_after=5,
+                ephemeral=True
+            )
+            return
+
         embed_start = Embed(
             title=f"Starting {server_to_start.domain}",
             colour=Colour.orange()
@@ -55,6 +63,8 @@ class Aternos(Cog):
         embed_start.set_footer(text=CREATED_BY)
 
         await ctx.send(embed=embed_start)
+
+        server_to_start.start()
 
     async def _server_index_valid(self, ctx, index: int):
         if index >= len(self.servers):

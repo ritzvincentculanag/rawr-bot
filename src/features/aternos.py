@@ -66,6 +66,31 @@ class Aternos(Cog):
 
         server_to_start.start()
 
+    @command()
+    async def mcstop(self, ctx, index: int):
+        if not await self._server_index_valid(ctx, index):
+            return
+
+        server_to_stop = self.servers[index]
+        if server_to_stop.status == "offline":
+            await ctx.send(
+                content="Server is already offline",
+                delete_after=5,
+                ephemeral=True
+            )
+            return
+
+        embed_stop = Embed(
+            title=f"Stopping {server_to_stop.domain}",
+            colour=Colour.orange()
+        )
+        embed_stop.set_author(name="Aternos")
+        embed_stop.set_footer(text=CREATED_BY)
+
+        await ctx.send(embed=embed_stop)
+
+        server_to_stop.stop()
+
     async def _server_index_valid(self, ctx, index: int):
         if index >= len(self.servers):
             await ctx.send(

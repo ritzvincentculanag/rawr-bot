@@ -41,7 +41,7 @@ class Aternos(Cog):
         await ctx.send(embed=embed_servers)
 
     @command()
-    async def mcstart(self, ctx, index: int):
+    async def mcstart(self, ctx, index: int = None):
         if not await self._server_index_valid(ctx, index):
             return
 
@@ -66,7 +66,7 @@ class Aternos(Cog):
         server_to_start.start()
 
     @command()
-    async def mcstop(self, ctx, index: int):
+    async def mcstop(self, ctx, index: int = None):
         if not await self._server_index_valid(ctx, index):
             return
 
@@ -91,7 +91,7 @@ class Aternos(Cog):
         server_to_stop.stop()
 
     @command()
-    async def mcstatus(self, ctx, index: int):
+    async def mcstatus(self, ctx, index: int = None):
         if not await self._server_index_valid(ctx, index):
             return
 
@@ -113,7 +113,7 @@ class Aternos(Cog):
         await ctx.send(embed=embed_status)
 
     @command()
-    async def mcplayers(self, ctx, index: int):
+    async def mcplayers(self, ctx, index: int = None):
         if not await self._server_index_valid(ctx, index):
             return
 
@@ -146,7 +146,16 @@ class Aternos(Cog):
 
         await ctx.send(embed=embed_players)
 
-    async def _server_index_valid(self, ctx, index: int):
+    async def _server_index_valid(self, ctx, index: int = None):
+        if index is None:
+            await ctx.send(
+                content="Please provide a server index",
+                delete_after=5,
+                ephemeral=True
+            )
+
+            return False
+
         if index >= len(self.servers):
             await ctx.send(
                 content="Invalid server index",

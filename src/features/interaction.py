@@ -1,4 +1,6 @@
 import os
+import requests
+import random
 
 from discord.app_commands.commands import command
 from discord.ext.commands import Cog
@@ -70,5 +72,25 @@ class Interaction(Cog):
             colour=Colour.green()
         )
         embed_slap.set_footer(text=CREATED_BY)
+        embed_slap.set_image(url=_get_gif("slap"))
 
         await interaction.response.send_message(embed=embed_slap)
+
+
+def _get_gif(query):
+    req_url = f"{BASE}" \
+              f"{API}{os.environ.get('GIPHY_TOKEN')}" \
+              f"{Q}{query}" \
+              f"{LIMIT}" \
+              f"{OFFSET}" \
+              f"{RATING}" \
+              f"{LANG}"
+
+    # Request data from url
+    req_data = requests.get(req_url).json()
+
+    # Get random item from objects of data
+    random_data = random.choice(req_data[""
+                                         "data"])
+    # Return the original media link of gif
+    return random_data["images"]["original"]["url"]

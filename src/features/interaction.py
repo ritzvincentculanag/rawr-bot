@@ -26,7 +26,7 @@ class Interaction(Cog):
         await interaction.response.send_message(
             content=f"Hey {member.mention}! " \
                     f"{interaction.user.mention}" \
-                    f" said good morning ☀.",
+                    f" said good morning ☀",
         )
 
     @command(name="gnight", description="Greet someone good night!")
@@ -43,5 +43,5 @@ class Interaction(Cog):
         await interaction.response.send_message(
             content=f"Hey {member.mention}! " \
                     f"{interaction.user.mention}" \
-                    f" said good night 🌙.",
+                    f" said good night 🌙",
         )

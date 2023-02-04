@@ -29,7 +29,7 @@ class Aternos(Cog):
 
         for index, server in enumerate(self.servers):
             embed_servers.add_field(
-                name=f"{server.domain}",
+                name=f"{server.subdomain}",
                 value=f"""
                 Address: `{server.address}`
                 Status: `{server.status}`
@@ -55,7 +55,7 @@ class Aternos(Cog):
             return
 
         embed_start = Embed(
-            title=f"Starting {server_to_start.domain}",
+            title=f"Starting {server_to_start.subdomain}",
             colour=Colour.orange()
         )
         embed_start.set_author(name="Aternos")
@@ -80,7 +80,7 @@ class Aternos(Cog):
             return
 
         embed_stop = Embed(
-            title=f"Stopping {server_to_stop.domain}",
+            title=f"Stopping {server_to_stop.subdomain}",
             colour=Colour.orange()
         )
         embed_stop.set_author(name="Aternos")
@@ -98,7 +98,7 @@ class Aternos(Cog):
         server_show = self.servers[index]
         server_show.fetch()
         embed_status = Embed(
-            title=f"Status of {server_show.domain}",
+            title=f"Status of {server_show.subdomain}",
             description=f"""
             Status: `{server_show.status}`
             Players: `{server_show.players_count}`
@@ -129,7 +129,7 @@ class Aternos(Cog):
         server_selected = self.servers[index]
         server_players = server_selected.players_list
         embed_players = Embed(
-            title=f"{server_selected.domain} players",
+            title=f"{server_selected.subdomain} players",
             colour=Colour.blue()
         )
 

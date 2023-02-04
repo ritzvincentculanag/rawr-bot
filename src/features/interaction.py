@@ -1,3 +1,5 @@
+import os
+
 from discord.app_commands.commands import command
 from discord.ext.commands import Cog
 from discord import (
@@ -6,6 +8,8 @@ from discord import (
     Colour,
     Embed,
 )
+
+from src.utils.constants import *
 
 
 class Interaction(Cog):
@@ -45,3 +49,26 @@ class Interaction(Cog):
                     f"{interaction.user.mention}" \
                     f" said good night 🌙",
         )
+
+    @command(name="slap", description="Slap someone virtually.")
+    async def slap(self, interaction: Interaction, member: Member):
+        if member is None:
+            await interaction.response.send_message(
+                content="No member selected!'",
+                delete_after=5,
+                ephemeral=True
+            )
+
+            return
+
+        slapper = interaction.user.display_name
+        slapped = member.display_name
+
+        embed_slap = Embed(
+            title=f"{slapper} slapped {slapped} 😲",
+            description="Oh no, someone slapped you!",
+            colour=Colour.green()
+        )
+        embed_slap.set_footer(text=CREATED_BY)
+
+        await interaction.response.send_message(embed=embed_slap)

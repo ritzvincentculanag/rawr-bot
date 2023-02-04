@@ -110,6 +110,38 @@ class Aternos(Cog):
 
         await ctx.send(embed=embed_status)
 
+    @command()
+    async def mcplayers(self, ctx, index: int):
+        if not await self._server_index_valid(ctx, index):
+            return
+
+        if len(self.servers[index].players_list) == 0:
+            await ctx.send(
+                content="There are no players at the moment.",
+                delete_after=5,
+                ephemeral=True
+            )
+
+            return
+
+        server_selected = self.servers[index]
+        server_players = server_selected.players_list
+        embed_players = Embed(
+            title=f"{server_selected} players",
+            colour=Colour.blue()
+        )
+
+        all_players = ""
+        for player in server_players:
+            all_players += f"{player}\n"
+
+        embed_players.set_author(name="Aternos")
+        embed_players.set_footer(text=CREATED_BY)
+        embed_players.add_field(
+            name=f"Player count: {server_selected.players_count}",
+            value=all_players
+        )
+
     async def _server_index_valid(self, ctx, index: int):
         if index >= len(self.servers):
             await ctx.send(

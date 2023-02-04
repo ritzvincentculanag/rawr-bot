@@ -28,14 +28,19 @@ class Aternos(Cog):
         embed_servers.set_author(name="Aternos")
         embed_servers.set_footer(text=CREATED_BY)
 
-        for server in self.servers:
+        for index, server in enumerate(self.servers):
             embed_servers.add_field(
                 name=f"{server.domain}",
                 value=f"""
                 Address: `{server.address}`
                 Status: `{server.status}`
                 Players: `{server.players_count}`
+                Index: `{index}
                 """.strip()
             )
 
         await ctx.send(embed=embed_servers)
+
+    @command()
+    async def mcstart(self, ctx, index):
+        pass

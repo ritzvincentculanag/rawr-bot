@@ -8,6 +8,7 @@ name = "pypi"
 ploudosapi = "*"
 python-dotenv = "*"
 openai = "*"
+python-aternos = "*"
 
 [dev-packages]
 

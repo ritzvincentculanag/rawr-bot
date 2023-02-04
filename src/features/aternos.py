@@ -156,7 +156,7 @@ class Aternos(Cog):
 
             return False
 
-        if index >= len(self.servers):
+        if index >= len(self.servers) or index <= len(self.servers):
             await ctx.send(
                 content="Invalid server index",
                 delete_after=5,

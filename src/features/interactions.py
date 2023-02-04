@@ -14,7 +14,7 @@ from discord import (
 from src.utils.constants import *
 
 
-class Interaction(Cog):
+class Interactions(Cog):
     def __init__(self, bot):
         self.bot = bot
 

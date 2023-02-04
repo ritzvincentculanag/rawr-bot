@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 
 # Import cogs
 from features.general import Rawr
-from features.interaction import Interaction
+from features.interactions import Interactions
 from features.chatgpt import Chatgpt
 from features.aternos import Aternos
 
@@ -21,7 +21,7 @@ bot = Bot(command_prefix=".", intents=bot_intents)
 # Declare cots
 bot_cogs = [
     Rawr,
-    Interaction,
+    Interactions,
     Chatgpt,
     Aternos
 ]

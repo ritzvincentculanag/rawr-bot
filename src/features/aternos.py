@@ -4,7 +4,6 @@ from discord.ext.commands import Cog
 from discord.ext.commands import command
 from discord import (
     Embed,
-    Member,
     Colour
 )
 
@@ -90,6 +89,26 @@ class Aternos(Cog):
         await ctx.send(embed=embed_stop)
 
         server_to_stop.stop()
+
+    @command()
+    async def mcstatus(self, ctx, index: int):
+        if not await self._server_index_valid(ctx, index):
+            return
+
+        server_show = self.servers[index]
+        server_show.fetch()
+        embed_status = Embed(
+            title=f"Status of {server_show.domain}",
+            description=f"""
+            Status: `{server_show.status}`
+            Players: `{server_show.players_count}`
+            Version: `{server_show.version}`
+            Edition: `{'Java' if server_show.is_java else 'Bedrock'}`
+            """.strip(),
+            colour=Colour.green()
+        )
+
+        await ctx.send(embed=embed_status)
 
     async def _server_index_valid(self, ctx, index: int):
         if index >= len(self.servers):

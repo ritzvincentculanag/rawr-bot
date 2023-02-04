@@ -107,6 +107,8 @@ class Aternos(Cog):
             """.strip(),
             colour=Colour.green()
         )
+        embed_status.set_author(name="Aternos")
+        embed_status.set_footer(text=CREATED_BY)
 
         await ctx.send(embed=embed_status)
 
@@ -115,7 +117,7 @@ class Aternos(Cog):
         if not await self._server_index_valid(ctx, index):
             return
 
-        if len(self.servers[index].players_list) == 0:
+        if len(self.servers[index].players_list) <= 0:
             await ctx.send(
                 content="There are no players at the moment.",
                 delete_after=5,
@@ -127,13 +129,13 @@ class Aternos(Cog):
         server_selected = self.servers[index]
         server_players = server_selected.players_list
         embed_players = Embed(
-            title=f"{server_selected} players",
+            title=f"{server_selected.domain} players",
             colour=Colour.blue()
         )
 
         all_players = ""
         for player in server_players:
-            all_players += f"{player}\n"
+            all_players += f"`{player}`\n"
 
         embed_players.set_author(name="Aternos")
         embed_players.set_footer(text=CREATED_BY)
@@ -141,6 +143,8 @@ class Aternos(Cog):
             name=f"Player count: {server_selected.players_count}",
             value=all_players
         )
+
+        await ctx.send(embed=embed_players)
 
     async def _server_index_valid(self, ctx, index: int):
         if index >= len(self.servers):

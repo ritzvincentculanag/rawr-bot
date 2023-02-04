@@ -2,10 +2,9 @@ import os
 import requests
 import random
 
-from discord.app_commands.commands import command
+from discord.ext.commands import command
 from discord.ext.commands import Cog
 from discord import (
-    Interaction,
     Member,
     Colour,
     Embed,
@@ -18,10 +17,10 @@ class Interactions(Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @command(name="gmorning", description="Greet someone good morning!")
-    async def gmorning(self, interaction: Interaction, member: Member):
+    @command()
+    async def gmorning(self, ctx, member: Member):
         if member is None:
-            await interaction.response.send_message(
+            await ctx.send(
                 content="No member provided",
                 delete_after=5,
                 ephemeral=True
@@ -29,16 +28,16 @@ class Interactions(Cog):
 
             return
 
-        await interaction.response.send_message(
+        await ctx.send(
             content=f"Hey {member.mention}! " \
-                    f"{interaction.user.mention}" \
+                    f"{ctx.message.author.mention}" \
                     f" said good morning ☀",
         )
 
-    @command(name="gnight", description="Greet someone good night!")
-    async def gnight(self, interaction: Interaction, member: Member):
+    @command()
+    async def gnight(self, ctx, member: Member):
         if member is None:
-            await interaction.response.send_message(
+            await ctx.send(
                 content="No member provided",
                 delete_after=5,
                 ephemeral=True
@@ -46,16 +45,16 @@ class Interactions(Cog):
 
             return
 
-        await interaction.response.send_message(
+        await ctx.send(
             content=f"Hey {member.mention}! " \
-                    f"{interaction.user.mention}" \
+                    f"{ctx.message.author.mention}" \
                     f" said good night 🌙",
         )
 
-    @command(name="slap", description="Slap someone virtually.")
-    async def slap(self, interaction: Interaction, member: Member):
+    @command()
+    async def slap(self, ctx, member: Member):
         if member is None:
-            await interaction.response.send_message(
+            await ctx.send(
                 content="No member selected!'",
                 delete_after=5,
                 ephemeral=True
@@ -63,7 +62,7 @@ class Interactions(Cog):
 
             return
 
-        slapper = interaction.user.display_name
+        slapper = ctx.message.author.display_name
         slapped = member.display_name
 
         embed_slap = Embed(
@@ -74,7 +73,7 @@ class Interactions(Cog):
         embed_slap.set_footer(text=CREATED_BY)
         embed_slap.set_image(url=_get_gif("slap"))
 
-        await interaction.response.send_message(embed=embed_slap)
+        await ctx.send(embed=embed_slap)
 
 
 def _get_gif(query):

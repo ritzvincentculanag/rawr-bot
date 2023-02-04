@@ -42,5 +42,28 @@ class Aternos(Cog):
         await ctx.send(embed=embed_servers)
 
     @command()
-    async def mcstart(self, ctx, index):
-        pass
+    async def mcstart(self, ctx, index: int):
+        if not await self._server_index_valid(ctx, index):
+            return
+
+        server_to_start = self.servers[index]
+        embed_start = Embed(
+            title=f"Starting {server_to_start.domain}",
+            colour=Colour.orange()
+        )
+        embed_start.set_author(name="Aternos")
+        embed_start.set_footer(text=CREATED_BY)
+
+        await ctx.send(embed=embed_start)
+
+    async def _server_index_valid(self, ctx, index: int):
+        if index >= len(self.servers):
+            await ctx.send(
+                content="Invalid server index",
+                delete_after=5,
+                ephemeral=True
+            )
+
+            return False
+
+        return True

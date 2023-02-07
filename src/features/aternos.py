@@ -15,8 +15,12 @@ from src.utils.constants import *
 class Aternos(Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.client = Client.from_session(session=os.environ.get('ATERNOS_SESSION'))
-        self.servers = self.client.list_servers()
+        self.client = Client.from_credentials(
+            username=os.environ.get("ATERNOS_USERNAME"),
+            password=os.environ.get("ATERNOS_PASSWORD"),
+        )
+        self.servers = self.client.servers
+        print(self.servers)
 
     @command()
     async def mcservers(self, ctx):

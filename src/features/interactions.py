@@ -78,7 +78,7 @@ class Interactions(Cog):
 
 def _get_gif(query):
     req_url = f"{BASE}" \
-              f"{API}{os.environ.get('GIPHY_TOKEN')}" \
+              f"{API}{'GIPHY_TOKEN'}" \
               f"{Q}{query}" \
               f"{LIMIT}" \
               f"{OFFSET}" \

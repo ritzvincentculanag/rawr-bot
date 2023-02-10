@@ -1,6 +1,10 @@
 from discord.ext.commands import Cog
 from discord.ext.commands import command
-from discord import Embed
+from discord import Embed, Colour
+
+from azlyrics.azlyrics import lyrics
+
+from src.utils.constants import *
 
 
 class Lyrics(Cog):
@@ -8,5 +12,21 @@ class Lyrics(Cog):
         self.bot = bot
 
     @command()
-    async def lyrics(self, ctx, song, artist):
-        pass
+    async def lyrics(self, ctx, *song):
+        song_data = " ".join(song).split("-")
+        song_artist = song_data[0].replace(" ", "")
+        song_title = song_data[1].replace(" ", "")
+        song_lyrics = ""
+
+        for line in lyrics(song_artist, song_title):
+            song_lyrics += line
+
+        embed_lyrics = Embed(
+            title=song_data[1].strip().title(),
+            description=song_lyrics,
+            colour=Colour.orange()
+        )
+        embed_lyrics.set_author(name=song_data[0].strip().title())
+        embed_lyrics.set_footer(text=CREATED_BY)
+
+        await ctx.send(embed=embed_lyrics)

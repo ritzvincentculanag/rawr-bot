@@ -27,6 +27,6 @@ class Lyrics(Cog):
             colour=Colour.orange()
         )
         embed_lyrics.set_author(name=song_data[0].strip().title())
-        embed_lyrics.set_footer(text=CREATED_BY)
+        embed_lyrics.set_footer(text=AZFOOTER)
 
         await ctx.send(embed=embed_lyrics)

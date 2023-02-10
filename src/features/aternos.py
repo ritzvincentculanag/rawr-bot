@@ -16,8 +16,8 @@ class Aternos(Cog):
     def __init__(self, bot):
         self.bot = bot
         self.client = Client.from_credentials(
-            username=os.environ.get("ATERNOS_USERNAME"),
-            password=os.environ.get("ATERNOS_PASSWORD"),
+            username="USERNAME",
+            password="PASSWORD",
         )
         self.servers = self.client.servers
         print(self.servers)

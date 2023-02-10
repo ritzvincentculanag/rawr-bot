@@ -16,3 +16,6 @@ ANSWER_AUTHOR = f"Answered by ChatGPT | {CREATED_BY}"
 DAVINCI = "text-davinci-003"
 ADA = "text-ada-001"
 
+# AZLYRICS RELATED
+AZFOOTER = f"Lyrics by AZ Lyrics 🎙️ | {CREATED_BY}"
+

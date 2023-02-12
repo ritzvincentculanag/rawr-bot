@@ -19,7 +19,7 @@ class Aternos(Cog):
             username=os.environ.get("ATERNOS_USERNAME"),
             password=os.environ.get("ATERNOS_PASSWORD"),
         )
-        self.servers = self.client.servers
+        self.servers = self.client.list_servers()
         print(self.servers)
 
     @command()

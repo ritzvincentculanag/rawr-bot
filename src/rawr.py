@@ -24,8 +24,7 @@ bot_cogs = [
     Rawr,
     Interactions,
     Chatgpt,
-    Aternos,
-    Song
+    Song,
 ]
 
 

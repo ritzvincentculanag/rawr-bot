@@ -10,7 +10,7 @@ from features.general import Rawr
 from features.interactions import Interactions
 from features.chatgpt import Chatgpt
 from features.aternos import Aternos
-from features.song import Song
+from features.lyrics import Lyrics
 
 # Bot intents
 bot_intents = Intents.default()
@@ -24,7 +24,8 @@ bot_cogs = [
     Rawr,
     Interactions,
     Chatgpt,
-    Song,
+    Aternos,
+    Lyrics
 ]
 
 

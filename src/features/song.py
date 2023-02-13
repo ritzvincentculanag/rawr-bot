@@ -13,6 +13,15 @@ class Song(Cog):
 
     @command()
     async def lyrics(self, ctx, *song):
+        if len(song) <= 1:
+            await ctx.send(
+                content="Follow the format `.lyrics <song-artist> - <song-title>`",
+                delete_after=10,
+                ephemeral=True
+            )
+
+            return
+
         song_data = " ".join(song).split("-")
         song_artist = song_data[0].replace(" ", "")
         song_title = song_data[1].replace(" ", "")

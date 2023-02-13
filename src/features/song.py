@@ -7,7 +7,7 @@ from azlyrics.azlyrics import lyrics
 from src.utils.constants import *
 
 
-class Lyrics(Cog):
+class Song(Cog):
     def __init__(self, bot):
         self.bot = bot
 

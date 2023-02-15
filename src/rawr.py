@@ -1,4 +1,5 @@
 import os
+import discord
 
 from discord.ext.commands import Bot
 from discord import Intents
@@ -9,8 +10,7 @@ from dotenv import load_dotenv
 from features.general import Rawr
 from features.interactions import Interactions
 from features.chatgpt import Chatgpt
-from features.aternos import Aternos
-from features.song import Lyrics
+from features.lyrics import Lyrics
 
 # Bot intents
 bot_intents = Intents.default()
@@ -24,7 +24,7 @@ bot_cogs = [
     Rawr,
     Interactions,
     Chatgpt,
-    Lyrics
+    Lyrics,
 ]
 
 
@@ -37,6 +37,14 @@ async def on_ready():
     # Refresh all commands in tree
     await bot.wait_until_ready()
     await bot.tree.sync()
+
+    # Set bot status
+    await bot.change_presence(
+        activity=discord.Activity(
+            type=discord.ActivityType.listening,
+            name="Decades 🦖"
+        )
+    )
 
     print("🤖 Bot is now online")
 

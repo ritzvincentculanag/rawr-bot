@@ -1,6 +1,6 @@
 import os
 
-from discord.ext.commands import command, CommandInvokeError
+from discord.ext.commands import command
 from discord.ext.commands import Cog
 from discord import (
     Embed,
@@ -60,6 +60,7 @@ class Repository(Cog):
         )
         embed_repos.set_author(name="GitHub")
         embed_repos.set_footer(text=CREATED_BY)
+        embed_repos.set_image()
 
         for repo in repositories:
             embed_repos.add_field(

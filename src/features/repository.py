@@ -18,11 +18,11 @@ class Repository(Cog):
         self.gh = Github(os.environ.get('GITHUB_TOKEN'))
 
     @command()
-    async def ghuser(self, ctx, *username):
-        if not self.username_is_valid(ctx, username):
+    async def ghuser(self, ctx, username):
+        if not await self.username_is_valid(ctx, username):
             return
 
-        gh_user = self.gh.get_user(username[0])
+        gh_user = self.gh.get_user(username)
         embed_user = Embed(
             title=f"{gh_user.login if gh_user.name == '' else gh_user.name}",
             description=f"""
@@ -45,11 +45,11 @@ class Repository(Cog):
         await ctx.send(embed=embed_user)
 
     @command()
-    async def ghrepos(self, ctx, *username):
-        if not self.username_is_valid(ctx, username):
+    async def ghrepos(self, ctx, username):
+        if not await self.username_is_valid(ctx, username):
             return
 
-        gh_user = self.gh.get_user(username[0])
+        gh_user = self.gh.get_user(username)
 
         repositories = gh_user.get_repos()
 
@@ -75,10 +75,10 @@ class Repository(Cog):
 
         await ctx.send(embed=embed_repos)
 
-    async def username_is_valid(self, ctx, *username) -> bool:
-        if len(username) <= 0:
+    async def username_is_valid(self, ctx, username=None) -> bool:
+        if username is None:
             await ctx.send(
-                content="Please follow the format `.ghuser <github-username>`",
+                content="Please follow the format `.ghcommand <github-username>`",
                 delete_after=10,
                 ephemeral=True
             )
@@ -86,7 +86,7 @@ class Repository(Cog):
             return False
 
         try:
-            self.gh.get_user(username[0])
+            print(self.gh.get_user(username.lower()))
         except Exception as exc:
             print(exc)
 
@@ -97,3 +97,5 @@ class Repository(Cog):
             )
 
             return False
+
+        return True

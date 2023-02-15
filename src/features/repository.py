@@ -18,7 +18,7 @@ class Repository(Cog):
         self.gh = Github(os.environ.get('GITHUB_TOKEN'))
 
     @command()
-    async def ghuser(self, ctx, username):
+    async def ghuser(self, ctx, username=None):
         if not await self.username_is_valid(ctx, username):
             return
 
@@ -45,7 +45,7 @@ class Repository(Cog):
         await ctx.send(embed=embed_user)
 
     @command()
-    async def ghrepos(self, ctx, username):
+    async def ghrepos(self, ctx, username=None):
         if not await self.username_is_valid(ctx, username):
             return
 
@@ -76,7 +76,7 @@ class Repository(Cog):
 
         await ctx.send(embed=embed_repos)
 
-    async def username_is_valid(self, ctx, username=None) -> bool:
+    async def username_is_valid(self, ctx, username) -> bool:
         if username is None:
             await ctx.send(
                 content="Please follow the format `.ghcommand <github-username>`",

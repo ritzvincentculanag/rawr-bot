@@ -19,28 +19,10 @@ class Repository(Cog):
 
     @command()
     async def ghuser(self, ctx, *username):
-        if len(username) <= 0:
-            await ctx.send(
-                content="Please follow the format `.ghuser <github-username>`",
-                delete_after=10,
-                ephemeral=True
-            )
-
+        if not self.username_is_valid(ctx, username):
             return
 
-        try:
-            gh_user = self.gh.get_user(username[0])
-        except Exception as exc:
-            print(exc)
-
-            await ctx.send(
-                content="No user with that username found. 🦖",
-                delete_after=10,
-                ephemeral=True
-            )
-
-            return
-
+        gh_user = self.gh.get_user(username[0])
         embed_user = Embed(
             title=f"{gh_user.login if gh_user.name == '' else gh_user.name}",
             description=f"""
@@ -64,27 +46,10 @@ class Repository(Cog):
 
     @command()
     async def ghrepos(self, ctx, *username):
-        if len(username) <= 0:
-            await ctx.send(
-                content="Please follow the format `.ghuser <github-username>`",
-                delete_after=10,
-                ephemeral=True
-            )
-
+        if not self.username_is_valid(ctx, username):
             return
 
-        try:
-            gh_user = self.gh.get_user(username[0])
-        except Exception as exc:
-            print(exc)
-
-            await ctx.send(
-                content="No user with that username found. 🦖",
-                delete_after=10,
-                ephemeral=True
-            )
-
-            return
+        gh_user = self.gh.get_user(username[0])
 
         repositories = gh_user.get_repos()
 
@@ -110,3 +75,25 @@ class Repository(Cog):
 
         await ctx.send(embed=embed_repos)
 
+    async def username_is_valid(self, ctx, *username) -> bool:
+        if len(username) <= 0:
+            await ctx.send(
+                content="Please follow the format `.ghuser <github-username>`",
+                delete_after=10,
+                ephemeral=True
+            )
+
+            return False
+
+        try:
+            self.gh.get_user(username[0])
+        except Exception as exc:
+            print(exc)
+
+            await ctx.send(
+                content="No user with that username found. 🦖",
+                delete_after=10,
+                ephemeral=True
+            )
+
+            return False

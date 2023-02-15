@@ -1,6 +1,6 @@
 import os
 
-from discord.ext.commands import command
+from discord.ext.commands import command, CommandInvokeError
 from discord.ext.commands import Cog
 from discord import (
     Embed,
@@ -28,7 +28,18 @@ class Repository(Cog):
 
             return
 
-        gh_user = self.gh.get_user(username[0])
+        try:
+            gh_user = self.gh.get_user(username[0])
+        except Exception as exc:
+            print(exc)
+
+            await ctx.send(
+                content="No user with that username found. 🦖",
+                delete_after=10,
+                ephemeral=True
+            )
+
+            return
 
         embed_user = Embed(
             title=f"{gh_user.login if gh_user.name == '' else gh_user.name}",

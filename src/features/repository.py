@@ -1,5 +1,4 @@
 import os
-import discord
 
 from discord.ext.commands import command
 from discord.ext.commands import Cog
@@ -32,9 +31,11 @@ class Repository(Cog):
         gh_user = self.gh.get_user(username[0])
 
         embed_user = Embed(
-            title=gh_user.name,
+            title=f"{gh_user.login if gh_user.name == '' else gh_user.name}",
             description=f"""
-            ***{gh_user.bio}***
+            *{gh_user.login}*
+            {gh_user.bio}
+            
             Followers: `{gh_user.followers}`
             Public Repos: `{gh_user.public_repos}`
             """.strip(),

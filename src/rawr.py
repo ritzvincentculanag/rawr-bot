@@ -10,7 +10,8 @@ from dotenv import load_dotenv
 from features.general import Rawr
 from features.interactions import Interactions
 from features.chatgpt import Chatgpt
-from features.lyrics import Lyrics
+from features.song import Lyrics
+from features.repository import Repository
 
 # Bot intents
 bot_intents = Intents.default()
@@ -25,6 +26,7 @@ bot_cogs = [
     Interactions,
     Chatgpt,
     Lyrics,
+    Repository,
 ]
 
 

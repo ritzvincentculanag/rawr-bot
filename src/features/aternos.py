@@ -19,7 +19,7 @@ class Aternos(Cog):
             username="USERNAME",
             password="PASSWORD",
         )
-        self.servers = self.client.servers
+        self.servers = self.client.list_servers()
         print(self.servers)
 
     @command()

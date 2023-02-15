@@ -23,6 +23,8 @@ class Lyrics(Cog):
                 ephemeral=True
             )
 
+            return
+
         song_data = " ".join(song).split("-")
         song_artist = song_data[0].strip().title()
         song_title = song_data[1].strip().title()

@@ -1,4 +1,5 @@
 import os
+import discord
 
 from discord.ext.commands import Bot
 from discord import Intents
@@ -36,6 +37,14 @@ async def on_ready():
     # Refresh all commands in tree
     await bot.wait_until_ready()
     await bot.tree.sync()
+
+    # Set bot status
+    await bot.change_presence(
+        activity=discord.Activity(
+            type=discord.ActivityType.listening,
+            name="Decades 🦖"
+        )
+    )
 
     print("🤖 Bot is now online")
 

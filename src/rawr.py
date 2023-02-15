@@ -9,7 +9,6 @@ from dotenv import load_dotenv
 from features.general import Rawr
 from features.interactions import Interactions
 from features.chatgpt import Chatgpt
-from features.aternos import Aternos
 from features.lyrics import Lyrics
 
 # Bot intents

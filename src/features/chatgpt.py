@@ -64,3 +64,18 @@ class Chatgpt(Cog):
         embed_image.set_image(url=generate_image_url)
 
         await ctx.reply(embed=embed_image)
+
+
+async def command_is_valid(ctx, prefix, content) -> bool:
+    command_to_check = content.replace(f"{prefix} ", "")
+
+    if not command_to_check:
+        await ctx.send(
+            content="Please enter a valid argument...",
+            delete_after=10,
+            ephemeral=True
+        )
+
+        return False
+
+    return True

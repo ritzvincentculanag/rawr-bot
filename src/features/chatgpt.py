@@ -48,7 +48,7 @@ class Chatgpt(Cog):
         generate_image_caption = generate_initial.title()
         generated_image = openai.Image.create(
             prompt=generate_image_caption,
-            size="1024x1024",
+            size="512x512",
             n=1
         )
 
@@ -60,8 +60,7 @@ class Chatgpt(Cog):
             colour=Colour.green()
         )
 
-        embed_image.set_author(name=ANSWER_AUTHOR)
-        embed_image.set_footer(text=CREATED_BY)
+        embed_image.set_footer(text=ANSWER_AUTHOR)
         embed_image.set_image(url=generate_image_url)
 
         await ctx.reply(embed=embed_image)

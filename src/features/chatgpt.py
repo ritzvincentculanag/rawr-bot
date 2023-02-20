@@ -20,6 +20,12 @@ class Chatgpt(Cog):
 
     @command()
     async def chat(self, ctx):
+        if not await command_is_valid(
+                ctx=ctx,
+                prefix=".chat",
+                content=ctx.message.content):
+            return
+
         question_initial = ctx.message.content.lower() \
             .replace(".chat ", "")
         question_openai = question_initial.replace(" ", "-")
@@ -43,6 +49,12 @@ class Chatgpt(Cog):
 
     @command()
     async def generate(self, ctx):
+        if not await command_is_valid(
+                ctx=ctx,
+                prefix=".generate",
+                content=ctx.message.content):
+            return
+
         generate_initial = ctx.message.content.lower() \
             .replace(".generate ", "")
         generate_image_caption = generate_initial.title()
@@ -67,7 +79,7 @@ class Chatgpt(Cog):
 
 
 async def command_is_valid(ctx, prefix, content) -> bool:
-    command_to_check = content.replace(f"{prefix} ", "")
+    command_to_check = content.replace(prefix, "")
 
     if not command_to_check:
         await ctx.send(

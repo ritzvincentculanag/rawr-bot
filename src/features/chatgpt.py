@@ -58,11 +58,22 @@ class Chatgpt(Cog):
         generate_initial = ctx.message.content.lower() \
             .replace(".generate ", "")
         generate_image_caption = generate_initial.title()
-        generated_image = openai.Image.create(
-            prompt=generate_image_caption,
-            size="512x512",
-            n=1
-        )
+
+        try:
+            generated_image = openai.Image.create(
+                prompt=generate_image_caption,
+                size="512x512",
+                n=1
+            )
+        except Exception as e:
+            print(e)
+            await ctx.reply(
+                content="Error: Your text may contain harmful words. Try again.",
+                delete_after=10,
+                ephemeral=True
+            )
+
+            return
 
         generate_image_url = generated_image["data"][0]["url"]
 

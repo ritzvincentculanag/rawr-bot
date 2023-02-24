@@ -30,13 +30,7 @@ class Interactions(Cog):
 
     @command()
     async def gnight(self, ctx, member: Member):
-        if member is None:
-            await ctx.send(
-                content="No member provided",
-                delete_after=5,
-                ephemeral=True
-            )
-
+        if not await _member_is_present(ctx, member):
             return
 
         await ctx.send(
@@ -47,13 +41,7 @@ class Interactions(Cog):
 
     @command()
     async def slap(self, ctx, member: Member):
-        if member is None:
-            await ctx.send(
-                content="No member selected!'",
-                delete_after=5,
-                ephemeral=True
-            )
-
+        if not await _member_is_present(ctx, member):
             return
 
         slapper = ctx.message.author.display_name

@@ -18,14 +18,8 @@ class Interactions(Cog):
         self.bot = bot
 
     @command()
-    async def gmorning(self, ctx, member: Member):
-        if member is None:
-            await ctx.send(
-                content="No member provided",
-                delete_after=5,
-                ephemeral=True
-            )
-
+    async def gmorning(self, ctx, member: Member = None):
+        if not await _member_is_present(ctx, member):
             return
 
         await ctx.send(
@@ -76,10 +70,10 @@ class Interactions(Cog):
         await ctx.send(embed=embed_slap)
 
 
-def _member_is_present(ctx, member: Member) -> bool:
+async def _member_is_present(ctx, member: Member) -> bool:
     if member is None:
         await ctx.send(
-            content="No member selected!'",
+            content="No member selected!",
             delete_after=5,
             ephemeral=True
         )

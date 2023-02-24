@@ -39,7 +39,4 @@ class Lyrics(Cog):
         embed_lyrics.set_author(name=song_data[0].strip().title())
         embed_lyrics.set_footer(text=AZFOOTER)
 
-        print(song.lyrics)
-        print(song)
-
         await ctx.send(embed=embed_lyrics)

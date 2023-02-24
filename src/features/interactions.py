@@ -18,48 +18,30 @@ class Interactions(Cog):
         self.bot = bot
 
     @command()
-    async def gmorning(self, ctx, member: Member):
-        if member is None:
-            await ctx.send(
-                content="No member provided",
-                delete_after=5,
-                ephemeral=True
-            )
-
+    async def gmorning(self, ctx, member: Member = None):
+        if not await _member_is_present(ctx, member):
             return
 
         await ctx.send(
-            content=f"Hey {member.mention}! " \
-                    f"{ctx.message.author.mention}" \
+            content=f"Hey {member.mention}! " 
+                    f"{ctx.message.author.mention}" 
                     f" said good morning ☀",
         )
 
     @command()
     async def gnight(self, ctx, member: Member):
-        if member is None:
-            await ctx.send(
-                content="No member provided",
-                delete_after=5,
-                ephemeral=True
-            )
-
+        if not await _member_is_present(ctx, member):
             return
 
         await ctx.send(
-            content=f"Hey {member.mention}! " \
-                    f"{ctx.message.author.mention}" \
+            content=f"Hey {member.mention}! " 
+                    f"{ctx.message.author.mention}" 
                     f" said good night 🌙",
         )
 
     @command()
     async def slap(self, ctx, member: Member):
-        if member is None:
-            await ctx.send(
-                content="No member selected!'",
-                delete_after=5,
-                ephemeral=True
-            )
-
+        if not await _member_is_present(ctx, member):
             return
 
         slapper = ctx.message.author.display_name
@@ -74,6 +56,19 @@ class Interactions(Cog):
         embed_slap.set_image(url=_get_gif("slap"))
 
         await ctx.send(embed=embed_slap)
+
+
+async def _member_is_present(ctx, member: Member) -> bool:
+    if member is None:
+        await ctx.send(
+            content="No member selected!",
+            delete_after=5,
+            ephemeral=True
+        )
+
+        return False
+
+    return True
 
 
 def _get_gif(query):

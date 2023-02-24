@@ -76,6 +76,19 @@ class Interactions(Cog):
         await ctx.send(embed=embed_slap)
 
 
+def _member_is_present(ctx, member: Member) -> bool:
+    if member is None:
+        await ctx.send(
+            content="No member selected!'",
+            delete_after=5,
+            ephemeral=True
+        )
+
+        return False
+
+    return True
+
+
 def _get_gif(query):
     req_url = f"{BASE}" \
               f"{API}{os.environ.get('GIPHY_TOKEN')}" \

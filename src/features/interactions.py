@@ -23,8 +23,8 @@ class Interactions(Cog):
             return
 
         await ctx.send(
-            content=f"Hey {member.mention}! " \
-                    f"{ctx.message.author.mention}" \
+            content=f"Hey {member.mention}! " 
+                    f"{ctx.message.author.mention}" 
                     f" said good morning ☀",
         )
 
@@ -34,8 +34,8 @@ class Interactions(Cog):
             return
 
         await ctx.send(
-            content=f"Hey {member.mention}! " \
-                    f"{ctx.message.author.mention}" \
+            content=f"Hey {member.mention}! " 
+                    f"{ctx.message.author.mention}" 
                     f" said good night 🌙",
         )
 

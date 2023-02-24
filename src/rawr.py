@@ -55,4 +55,4 @@ async def on_ready():
 if __name__ == '__main__':
     load_dotenv()
 
-    bot.run("DISCORD_TOKEN")
+    bot.run(os.environ.get("DISCORD_TOKEN"))

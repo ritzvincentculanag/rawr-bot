@@ -49,6 +49,7 @@ async def on_ready():
     )
 
     print("🤖 Bot is now online")
+    print("🦖 Waiting for commands...")
 
 
 if __name__ == '__main__':

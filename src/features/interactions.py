@@ -73,7 +73,7 @@ async def _member_is_present(ctx, member: Member) -> bool:
 
 def _get_gif(query):
     req_url = f"{BASE}" \
-              f"{API}{'GIPHY_TOKEN'}" \
+              f"{API}{os.environ.get('GIPHY_TOKEN')}" \
               f"{Q}{query}" \
               f"{LIMIT}" \
               f"{OFFSET}" \
@@ -84,7 +84,7 @@ def _get_gif(query):
     req_data = requests.get(req_url).json()
 
     # Get random item from objects of data
-    random_data = random.choice(req_data[""
-                                         "data"])
+    random_data = random.choice(req_data["data"])
+
     # Return the original media link of gif
     return random_data["images"]["original"]["url"]

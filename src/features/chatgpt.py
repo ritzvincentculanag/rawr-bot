@@ -16,7 +16,7 @@ class Chatgpt(Cog):
         self.bot = bot
 
         # Init openai
-        openai.api_key = "OPENAI_TOKEN"
+        openai.api_key = os.environ.get("OPENAI_TOKEN")
 
     @command()
     async def chat(self, ctx):

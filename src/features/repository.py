@@ -12,7 +12,7 @@ from github import Github
 from src.utils.constants import *
 
 
-class Repository(Cog):
+class GttHub(Cog):
     def __init__(self, bot):
         self.bot = bot
         self.gh = Github(os.environ.get('GITHUB_TOKEN'))

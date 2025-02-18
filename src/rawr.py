@@ -11,7 +11,7 @@ from features.general import Rawr
 from features.interactions import Interactions
 from features.chatgpt import Chatgpt
 from features.song import Lyrics
-from features.repository import Repository
+from features.github import GitHub
 
 # Bot intents
 bot_intents = Intents.default()
@@ -26,7 +26,7 @@ bot_cogs = [
     Interactions,
     Chatgpt,
     Lyrics,
-    Repository,
+    GitHub,
 ]
 
 

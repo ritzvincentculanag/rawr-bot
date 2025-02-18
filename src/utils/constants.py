@@ -1,5 +1,5 @@
 # BOT RELATED
-CREATED_BY = "Made with 🥨 by Rex 🦖"
+CREATED_BY = "Made with 🥨 by Ritz 🦖"
 
 # GIPHY RELATED
 BASE = "https://api.giphy.com/v1/gifs/search?"
@@ -18,4 +18,3 @@ ADA = "text-ada-001"
 
 # AZLYRICS RELATED
 AZFOOTER = f"Lyrics by AZ Lyrics 🎙️ | {CREATED_BY}"
-
